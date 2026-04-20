@@ -1,0 +1,54 @@
+# ========== 依赖 ==========
+node_modules/
+frontend/node_modules/
+backend/venv/
+backend/.venv/
+cyberguard/node_modules/
+mock-server/node_modules/
+
+# ========== Python ==========
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+
+# ========== 环境与密钥（重要！勿提交） ==========
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.production.local
+cyberguard/.env.local
+cyberguard/.env
+!frontend/.env.production
+!frontend/.env.development
+!backend/.env.example
+!.env.example
+
+# ========== 构建与数据 ==========
+frontend/dist/
+dist/
+build/
+*.db
+backend/supply_chain.db
+backend/data/
+backend/uploads/
+
+# ========== IDE ==========
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ========== 日志 ==========
+*.log
+logs/
+npm-debug.log*

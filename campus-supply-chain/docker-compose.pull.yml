@@ -1,0 +1,32 @@
+services:
+  backend:
+    image: ${BACKEND_IMAGE:-guqijin/campussupplychainsecurityplatform:backend-latest}
+    volumes:
+      - supply_chain_data:/data
+    environment:
+      - DATABASE_URL=sqlite:////data/supply_chain.db
+      - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
+      - IDS_AI_ANALYSIS=${IDS_AI_ANALYSIS:-false}
+      - LLM_PROVIDER=${LLM_PROVIDER:-ollama}
+      - LLM_BASE_URL=${LLM_BASE_URL:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_MODEL=${LLM_MODEL:-qwen2:7b}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8166/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  frontend:
+    image: ${FRONTEND_IMAGE:-guqijin/campussupplychainsecurityplatform:frontend-latest}
+    ports:
+      - "8080:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  supply_chain_data:

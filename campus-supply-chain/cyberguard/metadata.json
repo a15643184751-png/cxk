@@ -1,0 +1,5 @@
+{
+  "name": "CyberGuard 赛博卫士 IDS 监控大屏",
+  "description": "高科技世界地图大屏，实时展示拦截的攻击并进行 IP 溯源定位。",
+  "requestFramePermissions": []
+}

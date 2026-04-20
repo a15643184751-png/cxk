@@ -1,0 +1,10 @@
+ids-backend/.env
+ids-backend/ids.db
+ids-backend/runtime/
+ids-data/
+
+ids-frontend/node_modules/
+ids-frontend/dist/
+
+.DS_Store
+Thumbs.db

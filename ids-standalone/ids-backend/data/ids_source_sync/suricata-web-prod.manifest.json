@@ -1,0 +1,12 @@
+{
+  "source_key": "suricata-web-prod",
+  "package_version": "2026.04.07",
+  "release_timestamp": "2026-04-07T15:23:42Z",
+  "trust_classification": "external_mature",
+  "detector_family": "web",
+  "provenance_note": "Curated from the official ET Open Suricata rules bundle for campus IDS request interception.",
+  "upstream_archive_url": "http://rules.emergingthreats.net/open/suricata-7.0.3/emerging-all.rules.tar.gz",
+  "selection_strategy": "curated-message-match",
+  "rule_count": 123,
+  "artifact_path": "app/data/ids_source_sync/suricata-web-prod.rules"
+}

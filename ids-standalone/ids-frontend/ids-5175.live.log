@@ -1,0 +1,16 @@
+
+> frontend@0.0.0 dev
+> vite --host 0.0.0.0 --port 5175
+
+
+  [32m[1mVITE[22m v8.0.0[39m  [2mready in [0m[1m183[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5175[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.16.2.150:[1m5175[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.134.32.132:[1m5175[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.248.1:[1m5175[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.159.1:[1m5175[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.24.64.1:[1m5175[22m/[39m
+[2m14:49:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/views/notifications/IDSNotifications.vue?vue&type=style&index=0&scoped=a3c9a583&lang.scss[22m
+[2m14:49:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/views/security/SecurityIDS.vue?vue&type=style&index=1&lang.scss[22m
+[2m15:06:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/views/notifications/IDSNotifications.vue?vue&type=style&index=0&scoped=a3c9a583&lang.scss[22m

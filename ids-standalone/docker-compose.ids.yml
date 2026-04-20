@@ -1,0 +1,36 @@
+services:
+  ids-backend:
+    build:
+      context: ./ids-backend
+    container_name: independent-ids-backend
+    ports:
+      - "8170:8170"
+    environment:
+      DATABASE_URL: ${IDS_DATABASE_URL:-sqlite:////data/ids.db}
+      SECRET_KEY: ${IDS_SECRET_KEY:-change-this-ids-secret-in-production}
+      IDS_DEFAULT_ADMIN_USERNAME: ${IDS_DEFAULT_ADMIN_USERNAME:-ids_admin}
+      IDS_DEFAULT_ADMIN_PASSWORD: ${IDS_DEFAULT_ADMIN_PASSWORD:-123456}
+      IDS_DEFAULT_ADMIN_REAL_NAME: ${IDS_DEFAULT_ADMIN_REAL_NAME:-IDS Admin}
+      IDS_ACCEPTED_UPLOAD_DIR: ${IDS_ACCEPTED_UPLOAD_DIR:-/data/uploads/accepted}
+      IDS_QUARANTINE_DIR: ${IDS_QUARANTINE_DIR:-/data/quarantine}
+      IDS_REPORT_DIR: ${IDS_REPORT_DIR:-/data/reports}
+      IDS_OPERATOR_STATE_DIR: ${IDS_OPERATOR_STATE_DIR:-/data/state}
+      IDS_AI_ANALYSIS: ${IDS_AI_ANALYSIS:-true}
+      IDS_BLOCK_THRESHOLD: ${IDS_BLOCK_THRESHOLD:-70}
+      IDS_INTEGRATION_TOKEN: ${IDS_INTEGRATION_TOKEN:-}
+      LLM_PROVIDER: ${LLM_PROVIDER:-deepseek}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-deepseek-chat}
+      CORS_ORIGINS: ${IDS_CORS_ORIGINS:-http://localhost:5175,http://127.0.0.1:5175,http://localhost:8081,http://127.0.0.1:8081}
+    volumes:
+      - ./ids-data:/data
+
+  ids-frontend:
+    build:
+      context: ./ids-frontend
+    container_name: independent-ids-frontend
+    depends_on:
+      - ids-backend
+    ports:
+      - "8081:80"

@@ -1,0 +1,47 @@
+# Example site gateway layout for a business site protected by the standalone IDS.
+# This file is intentionally generic. Adjust upstreams, TLS, and WAF directives
+# for the real deployment.
+
+upstream business_site_backend {
+    server 127.0.0.1:8080;
+}
+
+upstream ids_backend {
+    server 127.0.0.1:8170;
+}
+
+server {
+    listen 80;
+    server_name site.example.com;
+
+    # Forward the real client address so the business site and IDS can keep
+    # consistent source-IP records.
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # Optional WAF hooks go here, for example:
+    # modsecurity on;
+    # modsecurity_rules_file /etc/nginx/modsec/main.conf;
+
+    location / {
+        proxy_pass http://business_site_backend;
+    }
+
+    # Optional internal health probe to confirm the IDS backend is reachable
+    # from the gateway host.
+    location = /__ids/health {
+        allow 127.0.0.1;
+        deny all;
+        proxy_pass http://ids_backend/api/health;
+    }
+}
+
+# Notes:
+# 1. Upload scanning is still recommended as a server-to-server call from the
+#    business site to POST /api/upload on the IDS backend.
+# 2. WAF or access logs should be shipped by a small adapter that posts
+#    normalized security events to POST /api/ids/events/ingest using:
+#       X-IDS-Integration-Token
+#       X-IDS-Source-System

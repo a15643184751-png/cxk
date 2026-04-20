@@ -1,0 +1,46 @@
+# 一键部署：docker compose up -d --build
+# 浏览器访问 http://<主机>:8080 （不占用 80 端口）
+# 预置账号见 init_db，默认密码 123456
+#
+# 推送到仓库前设置镜像名（示例见 docker.env.example），然后：
+#   docker compose build && docker compose push
+# 或使用 scripts/push-docker.ps1
+
+services:
+  backend:
+    image: ${BACKEND_IMAGE:-campus-supply-backend:local}
+    build: ./backend
+    volumes:
+      - supply_chain_data:/data
+    environment:
+      - DATABASE_URL=sqlite:////data/supply_chain.db
+      # 生产务必通过 .env 或宿主机环境变量传入，勿写死在镜像里
+      - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
+      # 默认 false：无 LLM 密钥时不调用外部 API，仅规则引擎（推仓库给他人用时更安全）
+      - IDS_AI_ANALYSIS=${IDS_AI_ANALYSIS:-false}
+      - LLM_PROVIDER=${LLM_PROVIDER:-ollama}
+      - LLM_BASE_URL=${LLM_BASE_URL:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_MODEL=${LLM_MODEL:-qwen2:7b}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8166/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  frontend:
+    image: ${FRONTEND_IMAGE:-campus-supply-frontend:local}
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  supply_chain_data:
