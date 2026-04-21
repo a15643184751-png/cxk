@@ -1,19 +1,16 @@
 # Campus Supply Chain Security Bundle
 
-This repository now contains the cleaned delivery layout for three parts:
+This repository now contains the cleaned delivery layout for the current delivery set:
 
 - `campus-supply-chain/`: campus supply chain source
 - `ids-standalone/`: standalone IDS source
 - `ids-docker-package/`: Docker delivery package for IDS
-- `pentest-platform/`: automated pentest platform source
 - `runtime/startup/`: Windows startup scripts
 
 ## Startup Entry Points
 
 - `start-supply-chain.bat`
   Starts only the campus supply chain frontend and backend.
-- `start-pentest-platform.bat`
-  Starts only the pentest platform frontend and backend.
 - `ids-docker-package/start-ids-docker.ps1`
 - `ids-docker-package/start-ids-docker.sh`
   Unified IDS Docker deployment entrypoints.

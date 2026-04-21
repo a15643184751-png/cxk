@@ -28,6 +28,3 @@ ids-docker-package/ids-data/quarantine/*
 ids-docker-package/ids-data/reports/*
 ids-docker-package/ids-data/uploads/*
 !ids-docker-package/ids-data/**/.gitkeep
-
-# Pentest local files
-pentest-platform/backend/.env
