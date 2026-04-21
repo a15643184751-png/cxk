@@ -13,8 +13,6 @@ venv/
 *.log
 *.err.log
 *.live.log
-runtime/config/
-runtime/startup-logs/
 
 # IDS generated outputs
 ids-docker-package/config/ids-backend.env
