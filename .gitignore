@@ -1,0 +1,33 @@
+# Node / frontend
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local env / runtime
+.env
+*.log
+*.err.log
+*.live.log
+runtime/config/
+runtime/startup-logs/
+
+# IDS generated outputs
+ids-docker-package/config/ids-backend.env
+ids-docker-package/docker-compose.generated.yml
+ids-docker-package/docker-compose.registry.generated.yml
+ids-docker-package/docs/bootstrap-noise.latest.json
+ids-docker-package/docs/demo-console.latest.json
+ids-docker-package/ids-data/ids.db
+ids-docker-package/ids-data/state/communication_settings.json
+ids-docker-package/ids-data/quarantine/*
+ids-docker-package/ids-data/reports/*
+ids-docker-package/ids-data/uploads/*
+!ids-docker-package/ids-data/**/.gitkeep
+
+# Pentest local files
+pentest-platform/backend/.env

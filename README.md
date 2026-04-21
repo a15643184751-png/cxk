@@ -1,18 +1,25 @@
-﻿# Campus Supply Chain + IDS Export
+# Campus Supply Chain Security Bundle
 
-This repository packages the current campus supply chain project and standalone IDS work into one clean GitHub-ready export.
+This repository now contains the cleaned delivery layout for three parts:
 
-## Structure
+- `campus-supply-chain/`: campus supply chain source
+- `ids-standalone/`: standalone IDS source
+- `ids-docker-package/`: Docker delivery package for IDS
+- `pentest-platform/`: automated pentest platform source
+- `runtime/startup/`: Windows startup scripts
 
-- `campus-supply-chain/`: campus supply chain source code
-- `ids-standalone/`: standalone IDS source code
-- `runtime/startup/`: startup and configuration scripts
-- `docs/`: startup and deployment notes
-- `design-preview/`: current IDS dashboard preview page
-- `start-campus-ids.bat`: launcher wrapper
+## Startup Entry Points
+
+- `start-supply-chain.bat`
+  Starts only the campus supply chain frontend and backend.
+- `start-pentest-platform.bat`
+  Starts only the pentest platform frontend and backend.
+- `ids-docker-package/start-ids-docker.ps1`
+- `ids-docker-package/start-ids-docker.sh`
+  Unified IDS Docker deployment entrypoints.
 
 ## Notes
 
-- Real `.env` files and runtime databases were intentionally excluded.
-- Use the included example environment files and fill in your own values before deployment.
-- Python virtual environments, caches, nested `.git` directories, and runtime artifacts were excluded to keep the repository clean.
+- The old mixed `start-campus-ids` chain has been removed.
+- IDS communication settings are saved from the IDS frontend and written to runtime config/state files.
+- Generated databases, live logs, local `.env` files, and transient Docker outputs are intentionally excluded from version control.
